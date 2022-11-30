@@ -3,6 +3,8 @@ project(SimpleLibrary)
 
 include_directories(include)
 
+set(CMAKE_MACOSX_RPATH 1)
+set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${SimpleLibrary_SOURCE_DIR}/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${SimpleLibrary_SOURCE_DIR}/lib)
@@ -11,3 +13,6 @@ add_executable(Main main.cpp)
 add_executable(MainLib main_lib.cpp)
 
 target_link_libraries(MainLib buffer)
+
+install(TARGETS Main MainLib DESTINATION bin)
+install(TARGETS buffer DESTINATION lib)
